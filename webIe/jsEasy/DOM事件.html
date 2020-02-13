@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dom 事件</title>
+</head>
+<body>
+	<div onclick="alert('helloworld')">按钮</div>
+	<button id="main">我是菜鸟</button>
+	<button id="nn">我是工具人</button>
+
+	<script type="text/javascript">
+		//点击事件触发
+		var main = document.getElementById("main");
+		main.onclick = function(){
+			alert("菜鸟被触发了");
+		}
+
+		//监听有事件触发
+		var btn = document.getElementById("nn");
+		btn.addEventListener("click", function(){
+			alert("工具人被触发了");
+		});
+	</script>
+</body>
+</html>
