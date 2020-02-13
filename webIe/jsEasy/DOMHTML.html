@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dom html</title>
+</head>
+<body>
+	<div id="main" data="nihao">别小看帅气的我</div>
+
+	<img src="https://bkimg.cdn.bcebos.com/pic/0823dd54564e9258dbbe38929382d158cdbf4ec7?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2U5Mg==,xp_5,yp_5" alt="." style="zoom: 33%;" id="image" />
+
+	<a id="goUrl" href="">调到百度</a>
+	<script type="text/javascript">
+		var main = document.getElementById("main");
+		main.innerHTML= 'helloWorld';
+
+
+		main.setAttribute("data", "buhao");
+		main.getAttribute("data","");
+
+		var image = document.getElementById("image");
+		image.src = "https://bkimg.cdn.bcebos.com/pic/0823dd54564e9258dbbe38929382d158cdbf4ec7?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2U5Mg==,xp_5,yp_5" alt="." style="zoom: 33%;";
+
+		var goUrl = document.getElementById("goUrl");
+		goUrl.href = "http://www.baidu.com"
+	</script>
+</body>
+</html>
