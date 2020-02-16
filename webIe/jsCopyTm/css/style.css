@@ -1,0 +1,276 @@
+/*选择所有元素*/
+*{
+	margin:0; /*设置外边距为0*/
+	padding:0; /*设置填充边距为0*/
+}
+
+body{
+	font-family:"微软雅黑"; /*字体设置*/
+	color:#14191e;        /*颜色设置*/
+}
+
+.main{
+	width:1180px;  /*主界面宽度*/
+	height:500px;	/*主界面高度*/
+	margin:30px auto;	/*上边距30px,auto是游览器计算外边距*/
+	position:relative; /*定位*/
+	overflow:hidden;
+}
+
+.banner{
+	width:1180px;	/*这里图片连播块应该和主界面块大小一致*/
+	height:500px;	
+	overflow:hidden; /*超出边框部分隐藏*/
+	position:relative;	/*相对正常位置定位*/
+}	
+
+.banner-slide{
+	width:1180px;
+	height:500px;
+	background-repeat:no-repeat; /*背景图像垂直和水平方向不可重复*/
+	float:left; /*向左浮动*/
+	display:none;	/*此元素不会被显示*/
+}
+
+.slide-active{
+	display:block;	/*当前图片以块级元素展现*/
+}
+
+
+/*以图片的url导入图片,取自天猫*/
+.slide1{
+	background-image:url("https://img.alicdn.com/imgextra/i2/179/O1CN01LQngXh1DC1Trku75S_!!179-0-luban.jpg_q100.jpg_.webp");
+}
+.slide2{
+	background-image:url("https://aecpm.alicdn.com/simba/img/TB1W4nPJFXXXXbSXpXXSutbFXXX.jpg");
+}
+.slide3{
+	background-image:url("https://img.alicdn.com/tps/i4/TB1PKeNvrY1gK0jSZTESutDQVXa.jpg");
+}
+.slide4{
+	background-image:url("https://aecpm.alicdn.com/simba/img/TB1_JXrLVXXXXbZXVXXSutbFXXX.jpg");
+}
+.slide5{
+	background-image:url("https://img.alicdn.com/tps/TB1_2OWLVXXXXcTXVXXXXXXXXXX-1130-500.jpg_q100.jpg_.webp");
+}
+.slide6{
+	background-image:url("https://img.alicdn.com/tps/TB1JVu7LVXXXXacXFXXXXXXXXXX-1130-500.jpg_q100.jpg_.webp");
+}
+
+.button{
+	position:absolute;	/*相对第一个父元素定位*/
+    transform:rotate(180deg);	/*2D转动180度，根据箭头图*/
+    top: 50%;	/*距离顶部距离居中*/
+    left: 244px;	/*距离左边距240px*/
+    height: 80px;
+    width: 40px;
+    margin-top:-40px; /*外边距*/
+    background:url(../img/arrow.png) center center no-repeat; /*载入图片*/
+}
+
+.next{
+	transform:rotate(0deg); /*右边箭头按钮不需要转角度，重置回来*/
+	left:auto;
+	right:130px;
+}
+
+/*设置鼠标移动到箭头按钮上显示的效果*/
+.button:hover{
+	background-color:#333;
+	opacity: 0.8;	/*设置透明度为0.8*/
+	filter:alpha(opacity=80);	/*按饱和度80%设置滤镜*/
+}
+
+.dots{
+	position:absolute; 	/*定位*/
+	bottom:24px;	/*距离底部24px*/
+	right: 38%;		/*偏右*/
+	text-align: center;	/*文本居中*/
+	padding-right: 24px;/*填充边距24px*/
+	line-height: 12px;	/*设置行间距，即行高*/
+}
+
+
+.dots span{
+	display:inline-block;	/*按行内块元素展示，即圆点行排列*/
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;	/*给元素添加圆角边框*/
+	margin: 2px;	/*各圆点边距为2*/
+	background-color: rgba(7, 17, 27, 0.4);	/*背景颜色根据r,g,b,透明度来设置*/
+	cursor: pointer;	/*定义了鼠标指针放在元素边界范围光标呈现为指示链接的指针（一只手）*/
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8) inset;	/*向圆点中添加阴影*/
+	/*从外层的阴影（开始时）改变阴影内侧阴影*/
+}
+
+/*对当前点着色*/
+.dots span.active{
+	/*box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径] [阴影扩展] [阴影颜色] [投影方式];*/
+	box-shadow: 0 0 0 2px rgba(7, 17, 27, 0.4) inset;	/*设置当前圆点阴影*/
+	background-color: #ffffff; 	/*背景色重新置为白色*/
+}
+
+.menu-box {
+	background:rgba(7, 17, 27, 0.8);
+	opacity: 0.5;
+	position: absolute;	/*定位*/
+	left: 0px;
+	top: 0px;
+	width: 210px;	/*这里的宽度要等于menu-content的,同时与左拉菜单对齐*/
+	height: 500px;
+	z-index: 1;		/*堆叠顺序*/
+}
+
+.menu-content{
+	position:absolute; /*定位*/
+	left:0px;	/*贴近左边*/
+	top:0px;
+	width:210px;
+	height:500px;
+	z-index: 2;	 /*属性指定一个元素的堆叠顺序*/
+	/*拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面*/
+	padding-top: 6px;	/*填充上边距设置为6px*/
+}
+
+
+
+.menu-item{
+	height: 34px;
+	line-height: 36px;
+	margin-left:4px;	/*规定图标的左边距wei4px*/
+	font-size: 14px;	/*元素内的字体大小为14px*/
+	cursor: pointer;	/*鼠标游览时为手型*/
+	padding: 0 24px;	/*填充边距*/
+	position: relative;
+}
+
+/*导入icon,适应多个游览器*/
+@font-face {font-family: 'icont';
+    src: url('../img/font/iconfont.eot'); 
+    src: url('../img/font/iconfont.eot') format('embedded-opentype'),
+    url('../img/font/iconfont.woff') format('woff'),
+    url('../img/font/iconfont.ttf') format('truetype'),
+    url('../img/font/iconfont.svg#iconfont') format('svg');
+}
+
+/*处理掉字体下的下划线*/
+a{
+	text-decoration: none;
+}
+
+/*
+未游览、已游览状态,设置统一颜色
+a:link,a:visited{
+	color:#5e5e5e;
+}
+*/
+
+.ali{
+	position:absolute;	/*定位*/
+	left:0px;	/*贴近左边*/
+	top:8px;
+	width:20px;
+	height:23px;
+}
+
+.menu-item a{
+	display: block;
+	color: #fff;
+	padding: 0 8px;
+	/*设置底部分割线*/
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);	
+	height: 33px;
+	font-size:14px;
+}
+
+
+
+.menu-item i{
+	position: absolute;	/*定位*/
+	right: 14px;
+	top: 1px;
+	color: rgba(255,255,255,0.5);
+	font-size: 24px;
+    font-style:normal;	/*字体样式默认*/
+    font-weight:normal;	/*字体粗细默认*/
+    font-family:"icont";	/*字体形式，和导入设定的字体样式一致*/
+}
+
+.sub-menu{
+	border:1px solid #d9dde1;	/*对box的边框作光滑处理*/
+	background:#fff;
+	position: absolute;	/*定位*/
+	left: 210px;	/*注意大小对齐做菜单栏*/
+	top: 0px;
+	width: 730px;
+	height: 458px;
+	z-index: 3;	/*堆叠顺序高一些*/
+	box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1); /*加一层阴影*/
+}
+
+/*将左拉隐藏,通过js重新调显,静态页面会一直展现*/
+.hide{
+	display:none;
+}
+
+.inner-box{
+	width:100%;
+	height:100%;
+	background:url(../img/menuBg.jpg) no-repeat; /*导入背景版面图*/
+	display:none;	/*不显示，当js调用改变元素属性时才显示*/
+}
+
+.sub-inner-box{
+	width: 652px;
+	margin-left: 40px;
+	overflow: hidden;
+}
+
+/*空块,作边距作用*/
+.space{
+	font-size: 14px;
+	line-height: 16px;
+	margin-top: 28px;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+
+.sub-row{
+	margin-bottom:25px;
+	font-size:14px;
+}
+
+.bold{
+	font-weight:700;
+}
+
+.mr10{
+	margin-right:10px;
+	font-size: 14px;
+}
+
+.ml10{
+	margin-left:2px;
+	font-size: 14px;
+}
+
+
+/*改变左拉菜单字体颜色，增添色彩*/
+.c1{
+	color:#FF4040;
+}
+.c2{
+	color:#CD950C;
+}
+.c3{
+	color:#CD00CD;
+}
+.c4{
+	color:#C2C2C2;
+}
+.c5{
+	color:#7FFF00;
+}
+.c6{
+	color:#CD2626;
+}
